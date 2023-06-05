@@ -2,6 +2,7 @@ const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 // 注意require('koa-router')返回的是函数:
 const router = require('koa-router')();
+const cors = require('@koa/cors')
 
 const app = new Koa();
 
@@ -10,6 +11,12 @@ app.use(async (ctx, next) => {
     console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
     await next();
 });
+
+const corsConfig = {
+    origin: 'http://localhost:3002'
+}
+
+
 
 router.get('/', async (ctx, next) => {
     ctx.response.body = `<h1>Index</h1>
@@ -20,17 +27,8 @@ router.get('/', async (ctx, next) => {
         </form>`;
 });
 
-router.post('/signin', async (ctx, next) => {
-    var
-        name = ctx.request.body.name || '',
-        password = ctx.request.body.password || '';
-    console.log(`signin with name: ${name}, password: ${password}`);
-    if (name === 'koa' && password === '12345') {
-        ctx.response.body = `<h1>Welcome, ${name}!</h1>`;
-    } else {
-        ctx.response.body = `<h1>Login failed!</h1>
-        <p><a href="/">Try again</a></p>`;
-    }
+router.post('/api/pdf', async (ctx, next) => {
+    ctx.response.body = '上传成功...'
 });
 
 app.use(bodyParser());

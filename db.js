@@ -101,11 +101,12 @@ function defineModel(name, attributes) {
 const TYPES = ['STRING', 'INTEGER', 'BIGINT', 'TEXT', 'DOUBLE', 'DATEONLY', 'BOOLEAN'];
 
 var exp = {
-    defineModel: defineModel,
-    sync: () => {
+    defineModel,
+    sync: async () => {
         // only allow create ddl in non-production environment:
         if (process.env.NODE_ENV !== 'production') {
-            sequelize.sync({ force: true });
+            console.log(sequelize.models)
+            await sequelize.sync({ force: true });
         } else {
             throw new Error('Cannot sync() when NODE_ENV is set to \'production\'.');
         }

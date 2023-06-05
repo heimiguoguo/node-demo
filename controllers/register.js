@@ -19,13 +19,21 @@ var fn_register = async (ctx, next) => {
         name,
         gender
     })
-    if(user){
+    if (user) {
         ctx.render('login.html')
     }
 }
 
+const getPDF = async (ctx, next) => {
+    const body = ctx.request.body
+    console.log(body)
+    const baseUrl = 'http://localhost:3000/static/common-ui.pdf'
+    ctx.response.body = [baseUrl]
+}
+
 
 module.exports = {
-    'GET /page/register': fn_index,
-    'POST /register': fn_register
+    'GET /register': fn_index,
+    'POST /register': fn_register,
+    'POST /api/getPdf': getPDF
 }

@@ -13,11 +13,12 @@
     align-items: center;
 }
 
-.container .row .col-4 {
-    background-color: rgba(255, 255, 255, 0.5);
-    padding-top: 15px;
-    padding-bottom: 15px;
+.container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 22px 22px 0px;
     border-radius: 5px;
+    position: absolute;
+    right: 100px;
 }
 
 .navbar{
